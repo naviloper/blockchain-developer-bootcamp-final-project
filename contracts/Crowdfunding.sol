@@ -47,7 +47,19 @@ contract Crowdfunding {
   isSymbolNameUnique(_projectSymbol)
   public
   {
-    
+    projects[_projectSymbol] = {
+      symbol: _projectSymbol,
+      name: _projectName,
+      description: _description,
+      totalTokenSupply: _totalTokenSupply,
+      owner: msg.sender,
+      minNeededFund: _minNeededFound,
+      deadlineTime: _deadlineTime,
+      fund: 0,
+      isFundPayed: false
+    };
+
+    emit LogProjectCreationSucceeded(msg.sender, _projectName, _projectSymbol);
   }
 
   function investInProject(string memory _projectSymbol, uint _fund) public {
